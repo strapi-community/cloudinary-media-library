@@ -16,7 +16,22 @@
     },
     "image": {
       "type": "customField",
-      "customField": "plugin::my-strapi-plugin.cloudinary"
+      "customField": "plugin::strapi-cloudinary-media-library.cloudinary"
+    },
+    "Public": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "second": {
+      "type": "customField",
+      "customField": "plugin::strapi-cloudinary-media-library.cloudinary"
     }
   }
 }

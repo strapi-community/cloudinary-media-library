@@ -1,32 +1,44 @@
-import { useEffect, useRef, ReactNode } from 'react';
+import { useEffect, useRef } from 'react';
+import { useIntl } from "react-intl";
 import { Button } from '@strapi/design-system';
 
 import useScript from 'react-script-hook';
+import { useConfig } from '../hooks/useConfig';
+import { getTranslation } from '../utils/getTranslation';
+import type { CloudinaryUploadData } from '../types';
 
-const UploadWidget = ({ children, onSelect }: { children: ReactNode, onSelect: (result: any) => void }) => {
+type UploadWidgetProps = {
+  onSelect: (result: CloudinaryUploadData) => void;
+};
 
+const UploadWidget = ({ onSelect }: UploadWidgetProps) => {
+    const { formatMessage } = useIntl();
     const myLibrary = useRef<any>(null)
 
     const [loading] = useScript({
       src: 'https://media-library.cloudinary.com/global/all.js',
       checkForExisting: true,
     })
-  
+
+    const config = useConfig();
+    
     useEffect(() => {
-      if (loading || myLibrary.current) {
+      if (loading || myLibrary.current || !config) {
         return
       }
-  
+      
+      const { cloud_name, api_key } = config;
+
       // RENDER AS MODAL (ATTENTION: this works, mediaLibrary's case not)
       myLibrary.current = (window as any).cloudinary.createMediaLibrary(
         {
-          cloud_name: 'ADD_CREDENTIALS_HERE',
-          api_key: 'ADD_CREDENTIALS_HERE',
+          cloud_name,
+          api_key,
           insert_caption: 'Select',
           remove_header: true,
         },
         {
-          insertHandler: (data: any) => {
+          insertHandler: (data: CloudinaryUploadData) => {
             console.log('Asset selected:', data)
             onSelect(data);
           },
@@ -36,20 +48,16 @@ const UploadWidget = ({ children, onSelect }: { children: ReactNode, onSelect: (
       myLibrary.current.on('close', () => {
         console.log('MODAL modalView closed')
       })
-    }, [loading, myLibrary])
+    }, [config, loading, myLibrary])
   
     const onOpenAgain = () => {
       myLibrary.current.show()
     }
   
     return (
-      <>
-        <Button
-          onClick={onOpenAgain}
-        >
-          Upload
-        </Button>
-      </>
+      <Button onClick={onOpenAgain}>
+        {formatMessage({id: getTranslation('upload.label')})}
+      </Button>
     )
 
 }

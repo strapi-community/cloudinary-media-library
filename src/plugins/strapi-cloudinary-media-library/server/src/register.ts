@@ -1,16 +1,10 @@
 import type { Core } from '@strapi/strapi';
 
 const register = ({ strapi }: { strapi: Core.Strapi }) => {
-  // register phase
   strapi.customFields.register({
     name: "cloudinary",
-    plugin: "my-strapi-plugin",
+    plugin: "strapi-cloudinary-media-library",
     type: "string",
-    inputSize: {
-      // optional
-      default: 4,
-      isResizable: true,
-    },
   });
 };
 
