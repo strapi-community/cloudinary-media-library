@@ -1,9 +1,0 @@
-{
-  "strapi-cloudinary-media-library.cloudinary.label": "Cloudinary",
-  "strapi-cloudinary-media-library.cloudinary.description": "Select a file from Cloudinary media library",
-  "strapi-cloudinary-media-library.image.label": "Image",
-  "strapi-cloudinary-media-library.remove.label": "Remove",
-  "strapi-cloudinary-media-library.upload.label": "Upload",
-  "strapi-cloudinary-media-library.uploaded.label": "Uploaded content"
-
-}

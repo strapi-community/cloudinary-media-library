@@ -1,61 +1,51 @@
-# 🚀 Getting started with Strapi
+# Strapi Cloudinary Media Library Plugin
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+A Strapi plugin that adds a **custom field** for selecting Cloudinary media assets using Cloudinary's official Media Library widget.
 
-### `develop`
+## 📦 Installation
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+Install the package from your app root directory
 
-```
-npm run develop
-# or
-yarn develop
-```
-
-### `start`
-
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+with `npm`
 
 ```
-npm run start
-# or
-yarn start
+npm install strapi-cloudinary-media-library --save
 ```
 
-### `build`
-
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+or `yarn`
 
 ```
-npm run build
-# or
-yarn build
+yarn add strapi-cloudinary-media-library
 ```
 
-## ⚙️ Deployment
+## 🔐 Getting Cloudinary Credentials
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+To retrieve your Cloudinary credentials:
 
+ - Go to https://cloudinary.com/console
+ - Select **Settings** > **API keys** 
+ - Copy your cloud name and API key.
+
+You don’t need the API secret for this integration — only cloud name and API key.
+
+### ⚙️ Setting up Configuration File
+
+Your plugin settings should go in `config/plugins.ts`. Here’s an example:
+
+```ts
+export default {
+  'strapi-cloudinary-media-library': {
+    enabled: true,
+    config: {
+      cloud_name: 'your-cloud-name',
+      api_key: 'your-api-key',
+    },
+  },
+};
 ```
-yarn strapi deploy
-```
 
-## 📚 Learn more
+Additionaly you can set up plugin config through Settings page in the Admin panel. Please note that this configuration will overwrite `config/plugin.ts`
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+![alt text](image.png)
 
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
-
----
-
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+These options are passed directly to the Cloudinary Media Library widget.
