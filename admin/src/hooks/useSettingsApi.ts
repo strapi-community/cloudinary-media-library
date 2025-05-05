@@ -6,11 +6,11 @@ type MutationKey = {
   restoreSettingsMutation: boolean;
   updateSettingsMutation: boolean;
   restartStrapiMutation: boolean;
-}
+};
 
 type CallbacksMutation = {
   [L in keyof MutationKey as `${L & string}${'Success' | 'Error'}`]?: () => void;
-}
+};
 
 export const useSettingsAPI = (callbacksMutation: CallbacksMutation = {}) => {
   const api = useAPI();
@@ -38,15 +38,13 @@ export const useSettingsAPI = (callbacksMutation: CallbacksMutation = {}) => {
     queryFn: api.config.query,
   });
 
-  return useMemo(() => ({
-    config,
-    restoreSettingsMutation,
-    updateSettingsMutation,
-    restartStrapiMutation,
-  }), [
-    config,
-    restoreSettingsMutation,
-    updateSettingsMutation,
-    restartStrapiMutation,
-  ]);
+  return useMemo(
+    () => ({
+      config,
+      restoreSettingsMutation,
+      updateSettingsMutation,
+      restartStrapiMutation,
+    }),
+    [config, restoreSettingsMutation, updateSettingsMutation, restartStrapiMutation]
+  );
 };

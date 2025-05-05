@@ -18,18 +18,17 @@ export default {
         {
           intlLabel: {
             id: `${PLUGIN_ID}.plugin.section.configuration`,
-            defaultMessage: "Configuration",
+            defaultMessage: 'Configuration',
           },
           id: 'navigation',
           to: PLUGIN_ID,
           Component() {
             return SettingsPage;
           },
-          permissions: pluginPermissions.settings,
+          permissions: pluginPermissions.access,
         },
       ]
     );
-
 
     app.registerPlugin({
       id: PLUGIN_ID,
@@ -37,18 +36,18 @@ export default {
       isReady: false,
       name: PLUGIN_ID,
     });
-    
+
     app.customFields.register({
-      name: "cloudinary",
+      name: 'cloudinary',
       pluginId: PLUGIN_ID,
-      type: "string",
+      type: 'string',
       intlLabel: {
         id: getTranslation('cloudinary.label'),
-        defaultMessage: "Cloudinary",
+        defaultMessage: 'Cloudinary',
       },
       intlDescription: {
         id: getTranslation('cloudinary.description'),
-        defaultMessage: "Select a file",
+        defaultMessage: 'Select a file',
       },
       components: {
         Input: async () => import('./components/Input'),

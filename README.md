@@ -22,9 +22,9 @@ yarn add strapi-cloudinary-media-library
 
 To retrieve your Cloudinary credentials:
 
- - Go to https://cloudinary.com/console
- - Select **Settings** > **API keys** 
- - Copy your cloud name and API key.
+- Go to https://cloudinary.com/console
+- Select **Settings** > **API keys**
+- Copy your cloud name and API key.
 
 You don’t need the API secret for this integration — only cloud name and API key.
 
@@ -46,11 +46,11 @@ export default {
 
 Additionaly you can set up plugin config through Settings page in the Admin panel. Please note that this configuration will overwrite `config/plugin.ts`
 
-![alt text](image.png)
+![alt text](image-2.png)
 
 These options are passed directly to the Cloudinary Media Library widget.
 
-## Setting up `strapi::security` middlewares to avoid CSP blocking Cloudinary
+## ⚙️ Setting up `strapi::security` middlewares to avoid CSP blocking Cloudinary
 
 When using Cloudinary's Media Library Plugin, modern browsers enforce Content Security Policy (CSP) rules. These policies prevent scripts, images, frames, and other resources from loading if they originate from domains not explicitly allowed — which will cause the Cloudinary widget to break.
 
@@ -63,23 +63,34 @@ export default [
   'strapi::logger',
   'strapi::errors',
   {
-    name: "strapi::security",
+    name: 'strapi::security',
     config: {
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          "connect-src": ["'self'", "https:"],
-          "img-src": [
+          'connect-src': ["'self'", 'https:'],
+          'img-src': [
             "'self'",
-            "data:",
-            "blob:",
-            "https://market-assets.strapi.io",
-            "https://console.cloudinary.com",
-            "https://res.cloudinary.com"
+            'data:',
+            'blob:',
+            'https://market-assets.strapi.io',
+            'https://console.cloudinary.com',
+            'https://res.cloudinary.com',
           ],
-          "script-src": ["'self'", "example.com", "https://media-library.cloudinary.com", "https://upload-widget.cloudinary.com", "https://console.cloudinary.com"],
-          "media-src": ["'self'", "data:", "blob:", "https://console.cloudinary.com"],
-          "frame-src": ["'self'", "https://media-library.cloudinary.com", "https://upload-widget.cloudinary.com", "https://console.cloudinary.com"],
+          'script-src': [
+            "'self'",
+            'example.com',
+            'https://media-library.cloudinary.com',
+            'https://upload-widget.cloudinary.com',
+            'https://console.cloudinary.com',
+          ],
+          'media-src': ["'self'", 'data:', 'blob:', 'https://console.cloudinary.com'],
+          'frame-src': [
+            "'self'",
+            'https://media-library.cloudinary.com',
+            'https://upload-widget.cloudinary.com',
+            'https://console.cloudinary.com',
+          ],
           upgradeInsecureRequests: null,
         },
       },
@@ -94,3 +105,26 @@ export default [
   'strapi::public',
 ];
 ```
+
+## 🔐 Managing Permissions
+
+The **Strapi Cloudinary Media Library** plugin supports two types of role-based permissions to control access to its features:
+
+| Permission | Description                                                                                                                    |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `Read`     | Allows the user to **view Cloudinary credentials** in the Settings page and **upload media** using the Cloudinary input field. |
+| `Settings` | Grants full access to **modify** Cloudinary configuration (cloud name and API key).                                            |
+
+### How to manage permissions
+
+1. Go to the **Strapi Admin Panel**.
+2. Navigate to **Settings → Administration Panel → Roles**.
+3. Select a role (e.g., `Authenticated` or `Super Admin`).
+4. Select the **Plugins** section.
+5. Find and expand **Strapi-cloudinary-media-library**.
+6. Check the permissions you want to enable:
+   - `☑ Read`
+   - `☑ Settings`
+7. Save changes.
+
+![alt text](image-1.png)

@@ -40,17 +40,12 @@ export const ConfirmationDialog: FC<ConfirmationDialogProps> = ({
         <Dialog.Body>
           <Flex justifyContent="center" direction="column">
             <WarningCircle fill="danger500" stroke="danger500" height="24" width="24" />
-            <Typography id="confirm-description">
-              {children}
-            </Typography>
+            <Typography id="confirm-description">{children}</Typography>
           </Flex>
         </Dialog.Body>
         <Dialog.Footer>
           <Dialog.Cancel>
-            <Button
-              onClick={onToggleModal}
-              disabled={isLoading}
-              variant="tertiary">
+            <Button onClick={onToggleModal} disabled={isLoading} variant="tertiary">
               {labelCancel || 'Cancel'}
             </Button>
           </Dialog.Cancel>

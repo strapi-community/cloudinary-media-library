@@ -21,9 +21,9 @@ export type CloudinaryAsset = {
   id: string;
   display_name: string;
   asset_folder: string;
-}
+};
 
 export type CloudinaryUploadData = {
   assets: CloudinaryAsset[];
   mlId: string;
-}
+};
