@@ -43,7 +43,11 @@ const Input = forwardRef(({ name }: InputProps) => {
             <IconButton onClick={() => updateImage('')} position="absolute" right="1em" top="1em">
               <Trash />
             </IconButton>
-            <img src={imageUrl} alt={formatMessage({ id: getTranslation('uploaded.label') })} style={{ borderRadius: "4px" }}/>
+            <img
+              src={imageUrl}
+              alt={formatMessage({ id: getTranslation('uploaded.label') })}
+              style={{ borderRadius: '4px' }}
+            />
           </Box>
         )}
         <UploadWidget onSelect={handleSelect} />
