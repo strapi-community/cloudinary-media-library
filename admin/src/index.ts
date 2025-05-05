@@ -3,6 +3,7 @@ import { Initializer } from './components/Initializer';
 import { getTranslation } from './utils/getTranslation';
 import SettingsPage from './pages/Settings';
 import pluginPermissions from './utils/permission';
+import { CloudinaryIcon } from './components/CloudinaryIcon';
 
 export default {
   register(app: any) {
@@ -34,7 +35,7 @@ export default {
       id: PLUGIN_ID,
       initializer: Initializer,
       isReady: false,
-      name: PLUGIN_ID,
+      name: 'Cloudinary Media Library',
     });
 
     app.customFields.register({
@@ -52,6 +53,7 @@ export default {
       components: {
         Input: async () => import('./components/Input'),
       },
+      icon: CloudinaryIcon,
     });
   },
 
