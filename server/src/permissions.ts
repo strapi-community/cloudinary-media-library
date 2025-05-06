@@ -7,6 +7,7 @@ export const permissions = {
     return `plugin::strapi-cloudinary-media-library.${uid}`;
   },
   cloudinary: {
+    read: 'read',
     settings: 'settings',
   },
 };
@@ -15,7 +16,13 @@ export const setupPermissions = async ({ strapi }: { strapi: Core.Strapi }) => {
   const actions = [
     {
       section: 'plugins',
-      displayName: 'Cloudinary',
+      displayName: 'Read',
+      uid: permissions.cloudinary.read,
+      pluginName: 'strapi-cloudinary-media-library',
+    },
+    {
+      section: 'plugins',
+      displayName: 'Settings',
       uid: permissions.cloudinary.settings,
       pluginName: 'strapi-cloudinary-media-library',
     },

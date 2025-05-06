@@ -1,11 +1,13 @@
-import { Core } from "@strapi/strapi";
+import { Core } from '@strapi/strapi';
 
-const settingsController = ({ strapi }: {strapi: Core.Strapi}) => ({
+const settingsController = ({ strapi }: { strapi: Core.Strapi }) => ({
   async getConfig(ctx) {
-    const settings = await strapi.store({
-      type: 'plugin',
-      name: 'strapi-cloudinary-media-library',
-    }).get({ key: 'cloudinary-config' });
+    const settings = await strapi
+      .store({
+        type: 'plugin',
+        name: 'strapi-cloudinary-media-library',
+      })
+      .get({ key: 'cloudinary-config' });
 
     if (!settings) {
       const config = strapi.config.get('plugin.strapi-cloudinary-media-library');
@@ -16,13 +18,15 @@ const settingsController = ({ strapi }: {strapi: Core.Strapi}) => ({
   },
 
   async updateConfig(ctx) {
-    const updated = await strapi.store({
-      type: 'plugin',
-      name: 'strapi-cloudinary-media-library',
-    }).set({
-      key: 'cloudinary-config',
-      value: ctx.request.body,
-    });
+    const updated = await strapi
+      .store({
+        type: 'plugin',
+        name: 'strapi-cloudinary-media-library',
+      })
+      .set({
+        key: 'cloudinary-config',
+        value: ctx.request.body,
+      });
 
     ctx.send(updated);
   },
@@ -30,13 +34,15 @@ const settingsController = ({ strapi }: {strapi: Core.Strapi}) => ({
   async restoreConfig(ctx) {
     const defaultConfig = strapi.config.get('plugin.strapi-cloudinary-media-library');
 
-    const updated = await strapi.store({
-      type: 'plugin',
-      name: 'strapi-cloudinary-media-library',
-    }).set({
-      key: 'cloudinary-config',
-      value: defaultConfig,
-    });
+    const updated = await strapi
+      .store({
+        type: 'plugin',
+        name: 'strapi-cloudinary-media-library',
+      })
+      .set({
+        key: 'cloudinary-config',
+        value: defaultConfig,
+      });
 
     ctx.send(updated);
   },

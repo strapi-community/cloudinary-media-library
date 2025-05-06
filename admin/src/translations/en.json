@@ -1,7 +1,7 @@
 {
   "strapi-cloudinary-media-library.plugin.section.name": "Cloudinary plugin",
   "strapi-cloudinary-media-library.plugin.section.configuration": "Configuration",
-  "strapi-cloudinary-media-library.page.settings.loading": "Loading...",
+  "strapi-cloudinary-media-library.page.settings.error": "Error!",
   "strapi-cloudinary-media-library.page.settings.header.title": "Cloudinary Media Library",
   "strapi-cloudinary-media-library.page.settings.header.description": "Manage your Cloudinary Media Library settings",
   "strapi-cloudinary-media-library.page.settings.actions.submit": "Submit",

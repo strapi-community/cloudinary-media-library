@@ -13,7 +13,7 @@ const routes = {
             {
               name: 'admin::hasPermissions',
               config: {
-                actions: [permissions.render('settings')],
+                actions: [permissions.render('read')],
               },
             },
           ],
@@ -49,8 +49,8 @@ const routes = {
           ],
         },
       },
-    ]
-  }
+    ],
+  },
 };
 
 export default routes;

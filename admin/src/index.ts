@@ -3,6 +3,7 @@ import { Initializer } from './components/Initializer';
 import { getTranslation } from './utils/getTranslation';
 import SettingsPage from './pages/Settings';
 import pluginPermissions from './utils/permission';
+import { CloudinaryIcon } from './components/CloudinaryIcon';
 
 export default {
   register(app: any) {
@@ -18,41 +19,41 @@ export default {
         {
           intlLabel: {
             id: `${PLUGIN_ID}.plugin.section.configuration`,
-            defaultMessage: "Configuration",
+            defaultMessage: 'Configuration',
           },
           id: 'navigation',
           to: PLUGIN_ID,
           Component() {
             return SettingsPage;
           },
-          permissions: pluginPermissions.settings,
+          permissions: pluginPermissions.access,
         },
       ]
     );
-
 
     app.registerPlugin({
       id: PLUGIN_ID,
       initializer: Initializer,
       isReady: false,
-      name: PLUGIN_ID,
+      name: 'Cloudinary Media Library',
     });
-    
+
     app.customFields.register({
-      name: "cloudinary",
+      name: 'cloudinary',
       pluginId: PLUGIN_ID,
-      type: "string",
+      type: 'string',
       intlLabel: {
         id: getTranslation('cloudinary.label'),
-        defaultMessage: "Cloudinary",
+        defaultMessage: 'Cloudinary',
       },
       intlDescription: {
         id: getTranslation('cloudinary.description'),
-        defaultMessage: "Select a file",
+        defaultMessage: 'Select a file',
       },
       components: {
         Input: async () => import('./components/Input'),
       },
+      icon: CloudinaryIcon,
     });
   },
 
