@@ -46,7 +46,7 @@ export default {
 
 Additionaly you can set up plugin config through Settings page in the Admin panel. Please note that this configuration will overwrite `config/plugin.ts`
 
-![alt text](image-2.png)
+![alt text](public/image-2.png)
 
 These options are passed directly to the Cloudinary Media Library widget.
 
@@ -127,4 +127,4 @@ The **Strapi Cloudinary Media Library** plugin supports two types of role-based 
    - `☑ Settings`
 7. Save changes.
 
-![alt text](image-1.png)
+![alt text](public/image-1.png)

@@ -1,7 +1,22 @@
 {
-  "version": "0.0.0",
-  "keywords": [],
+  "name": "@strapi-community/strapi-cloudinary-media-library",
+  "version": "1.0.0",
   "type": "commonjs",
+  "description": "Cloudinary Media Library Custom Field for Strapi",
+  "keywords": ["strapi", "cloudinary", "media", "library", "custom", "field", "plugin"],
+  "strapi": {
+    "kind": "plugin",
+    "name": "strapi-cloudinary-media-library",
+    "displayName": "Strapi cloudinary media library",
+    "description": "Custom Cloudinary media library integration for Strapi, with enhanced upload and management features."
+  },
+  "author": "Pierre Burgy <pierre@strapi.io>",
+  "maintainers": [
+    {
+      "name": "Mateusz Kleszcz",
+      "email": "mkleszcz@virtuslab.com"
+    }
+  ],
   "exports": {
     "./package.json": "./package.json",
     "./strapi-admin": {
@@ -61,14 +76,5 @@
     "react-router-dom": "^6.30.0",
     "styled-components": "^6.1.15"
   },
-  "strapi": {
-    "kind": "plugin",
-    "name": "strapi-cloudinary-media-library",
-    "displayName": "Strapi cloudinary media library",
-    "description": "Custom Cloudinary media library integration for Strapi, with enhanced upload and management features."
-  },
-  "name": "strapi-cloudinary-media-library",
-  "description": "",
-  "license": "MIT",
-  "author": "Pierre Burgy <pierre.burgy@gmail.com>"
+  "license": "MIT"
 }
