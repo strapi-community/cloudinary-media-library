@@ -27,13 +27,13 @@ const UploadWidget = ({ onSelect }: UploadWidgetProps) => {
       return;
     }
 
-    const { cloud_name, api_key } = config.data;
+    const { cloudName, apiKey } = config.data;
 
     // RENDER AS MODAL (ATTENTION: this works, mediaLibrary's case not)
     myLibrary.current = (window as any).cloudinary.createMediaLibrary(
       {
-        cloud_name,
-        api_key,
+        cloud_name: cloudName,
+        api_key: apiKey,
         insert_caption: formatMessage({ id: getTranslation('select.label') }),
         remove_header: false,
       },

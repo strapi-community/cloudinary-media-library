@@ -37,8 +37,9 @@ export default {
   'strapi-cloudinary-media-library': {
     enabled: true,
     config: {
-      cloud_name: 'your-cloud-name',
-      api_key: 'your-api-key',
+      cloudName: 'your-cloud-name',
+      apiKey: 'your-api-key',
+      encryptionKey: '32 chars encryption key'
     },
   },
 };
