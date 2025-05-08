@@ -2,7 +2,7 @@ import { getFetchClient } from '@strapi/strapi/admin';
 import { once } from 'lodash';
 import { configSchema } from './schemas';
 
-const URL_PREFIX = 'strapi-cloudinary-media-library';
+const URL_PREFIX = 'cloudinary-media-library';
 
 export type ApiClient = ReturnType<typeof getApiClient>;
 

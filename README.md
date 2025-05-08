@@ -9,13 +9,13 @@ Install the package from your app root directory
 with `npm`
 
 ```
-npm install strapi-cloudinary-media-library --save
+npm install @strapi-community/strapi-plugin-cloudinary-media-library --save
 ```
 
 or `yarn`
 
 ```
-yarn add strapi-cloudinary-media-library
+yarn add @strapi-community/strapi-plugin-cloudinary-media-library
 ```
 
 ## 🔐 Getting Cloudinary Credentials
@@ -34,7 +34,7 @@ Your plugin settings should go in `config/plugins.ts`. Here’s an example:
 
 ```ts
 export default {
-  'strapi-cloudinary-media-library': {
+  'cloudinary-media-library': {
     enabled: true,
     config: {
       cloudName: 'your-cloud-name',
@@ -122,7 +122,7 @@ The **Strapi Cloudinary Media Library** plugin supports two types of role-based 
 2. Navigate to **Settings → Administration Panel → Roles**.
 3. Select a role (e.g., `Authenticated` or `Super Admin`).
 4. Select the **Plugins** section.
-5. Find and expand **Strapi-cloudinary-media-library**.
+5. Find and expand **cloudinary-media-library**.
 6. Check the permissions you want to enable:
    - `☑ Read`
    - `☑ Settings`
