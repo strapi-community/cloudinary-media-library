@@ -4,7 +4,7 @@ import { Core } from '@strapi/strapi';
 
 export const permissions = {
   render: function (uid: string) {
-    return `plugin::strapi-cloudinary-media-library.${uid}`;
+    return `plugin::cloudinary-media-library.${uid}`;
   },
   cloudinary: {
     read: 'read',
@@ -18,13 +18,13 @@ export const setupPermissions = async ({ strapi }: { strapi: Core.Strapi }) => {
       section: 'plugins',
       displayName: 'Read',
       uid: permissions.cloudinary.read,
-      pluginName: 'strapi-cloudinary-media-library',
+      pluginName: 'cloudinary-media-library',
     },
     {
       section: 'plugins',
       displayName: 'Settings',
       uid: permissions.cloudinary.settings,
-      pluginName: 'strapi-cloudinary-media-library',
+      pluginName: 'cloudinary-media-library',
     },
   ];
   await strapi.admin.services.permission.actionProvider.registerMany(actions);

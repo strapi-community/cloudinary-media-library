@@ -1,1 +1,1 @@
-export const PLUGIN_ID = 'strapi-cloudinary-media-library';
+export const PLUGIN_ID = 'cloudinary-media-library';

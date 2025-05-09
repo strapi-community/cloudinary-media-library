@@ -96,8 +96,8 @@ const SettingsPage = () => {
             ref={formRef}
             onSubmit={onSubmit}
             initialValues={{
-              cloud_name: config.data.cloud_name,
-              api_key: config.data.api_key,
+              cloudName: config.data.cloudName,
+              apiKey: config.data.apiKey,
             }}
           >
             {({ values, onChange }) => (
@@ -114,12 +114,12 @@ const SettingsPage = () => {
                           id: getTranslation('page.settings.form.cloud-name'),
                         })}
                       >
-                        <Field.Label htmlFor="cloud_name">
+                        <Field.Label htmlFor="cloudName">
                           {formatMessage({ id: getTranslation('page.settings.form.cloud-name') })}
                         </Field.Label>
                         <Field.Input
-                          value={values.cloud_name}
-                          name="cloud_name"
+                          value={values.cloudName}
+                          name="cloudName"
                           onChange={onChange}
                           disabled={!hasSettingsPermissions}
                         />
@@ -131,12 +131,12 @@ const SettingsPage = () => {
                         width="100%"
                         hint={formatMessage({ id: getTranslation('page.settings.form.api-key') })}
                       >
-                        <Field.Label htmlFor="api_key">
+                        <Field.Label htmlFor="apiKey">
                           {formatMessage({ id: getTranslation('page.settings.form.api-key') })}
                         </Field.Label>
                         <Field.Input
-                          value={values.api_key}
-                          name="api_key"
+                          value={values.apiKey}
+                          name="apiKey"
                           onChange={onChange}
                           disabled={!hasSettingsPermissions}
                         />
