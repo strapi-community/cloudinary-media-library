@@ -1,6 +1,6 @@
 {
   "name": "@strapi-community/cloudinary-media-library",
-  "version": "1.0.0-beta.1",
+  "version": "v1.0.0",
   "type": "commonjs",
   "description": "Cloudinary Media Library Custom Field for Strapi",
   "keywords": [
