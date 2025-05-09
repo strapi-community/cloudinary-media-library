@@ -1,21 +1,46 @@
-# Strapi Cloudinary Media Library Plugin
+<div align="center" style="max-width: 10rem; margin: 0 auto">
+  <img style="width: 150px; height: auto;" src="https://www.sensinum.com/img/open-source/strapi-plugin-cloudinary-media-library/logo.png" alt="Logo - Strapi cloudinary-media-library Plugin" />
+</div>
+<div align="center">
+  <h1>Strapi Cloudinary Media Library Plugin</h1>
+  <p>Strapi Custom Field with Cloudinary Media Library feature</p>
+  <a href="https://www.npmjs.org/package/@strapi-community/cloudinary-media-library">
+    <img alt="NPM version" src="https://img.shields.io/npm/v/@strapi-community/cloudinary-media-library.svg">
+  </a>
+  <a href="https://www.npmjs.org/package/@strapi-community/cloudinary-media-library">
+    <img src="https://img.shields.io/npm/dm/@strapi-community/cloudinary-media-library.svg" alt="Monthly download on NPM" />
+  </a>
+  <a href="https://codecov.io/gh/strapi-community/cloudinary-media-library">
+    <img src="https://codecov.io/gh/strapi-community/cloudinary-media-library/branch/master/graph/badge.svg?token=p4KW9ytA6u" alt="codecov.io" />
+  </a>
+</div>
+
+---
+
+<div style="margin: 20px 0" align="center">
+  <img style="width: 100%; height: auto;" src="https://www.sensinum.com/img/open-source/strapi-plugin-cloudinary-media-library/preview.png" alt="UI preview" />
+</div>
+
 
 A Strapi plugin that adds a **custom field** for selecting Cloudinary media assets using Cloudinary's official Media Library widget.
 
+## 📋 Table of Contents
+
+- [📦 Installation](#installation)
+- [🔐 Getting Cloudinary Credentials](#getting-cloudinary-credentials)
+- [⚙️ Setting up Configuration File](#setting-up-configuration-file)
+- [🔒 Managing Permissions](#managing-permissions)
+- [👨‍💻 Development & Testing](#development--testing)
+- [🔗 Links](#links)
+- [💬 Community Support](#community-support)
+- [📄 License](#license)
+
 ## 📦 Installation
 
-Install the package from your app root directory
-
-with `npm`
-
-```
-npm install @strapi-community/strapi-plugin-cloudinary-media-library --save
-```
-
-or `yarn`
-
-```
-yarn add @strapi-community/strapi-plugin-cloudinary-media-library
+```bash
+npm install @strapi-community/cloudinary-media-library@latest
+# or
+yarn add @strapi-community/cloudinary-media-library@latest
 ```
 
 ## 🔐 Getting Cloudinary Credentials
@@ -47,11 +72,11 @@ export default {
 
 Additionaly you can set up plugin config through Settings page in the Admin panel. Please note that this configuration will overwrite `config/plugin.ts`
 
-![alt text](public/image-2.png)
+![Plugin Configuration](https://www.sensinum.com/img/open-source/strapi-plugin-cloudinary-media-library/cfg-plugin/1.png)
 
 These options are passed directly to the Cloudinary Media Library widget.
 
-## ⚙️ Setting up `strapi::security` middlewares to avoid CSP blocking Cloudinary
+### Setting up `strapi::security` middlewares to avoid CSP blocking Cloudinary
 
 When using Cloudinary's Media Library Plugin, modern browsers enforce Content Security Policy (CSP) rules. These policies prevent scripts, images, frames, and other resources from loading if they originate from domains not explicitly allowed — which will cause the Cloudinary widget to break.
 
@@ -109,7 +134,7 @@ export default [
 
 ## 🔐 Managing Permissions
 
-The **Strapi Cloudinary Media Library** plugin supports two types of role-based permissions to control access to its features:
+The **Cloudinary Media Library** plugin supports two types of role-based permissions to control access to its features:
 
 | Permission | Description                                                                                                                    |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -128,4 +153,27 @@ The **Strapi Cloudinary Media Library** plugin supports two types of role-based 
    - `☑ Settings`
 7. Save changes.
 
-![alt text](public/image-1.png)
+## 👨‍💻 Development & Testing
+
+- Build: `yarn build`
+- Test backend: `yarn test:server`
+- Test frontend: `yarn test:ts:front`
+
+## 🔗 Links
+
+- [Strapi website](http://strapi.io/)
+- [Strapi community on Slack](http://slack.strapi.io)
+- [Strapi news on Twitter](https://twitter.com/strapijs)
+
+## 💬 Community support
+
+- [GitHub](https://github.com/strapi-community/cloudinary-media-library) (Bug reports, contributions)
+  
+You can also used official support platform of Strapi, and search `[VirtusLab]` prefixed people (maintainers) 
+
+- [Discord](https://discord.strapi.io) (For live discussion with the Community and Strapi team)
+- [Community Forum](https://forum.strapi.io) (Questions and Discussions)
+
+## 📄 License
+
+See the [MIT License](LICENSE) file for licensing information.

@@ -18,7 +18,7 @@ jobs:
       - name: Install package
         run: yarn install
       - name: Generate coverage report
-        run: yarn test:unit:ci
+        run: yarn test:server:ci
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:

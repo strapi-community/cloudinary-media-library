@@ -1,5 +1,5 @@
 {
-  "name": "@strapi-community/strapi-plugin-cloudinary-media-library",
+  "name": "@strapi-community/cloudinary-media-library",
   "version": "1.0.0-beta.1",
   "type": "commonjs",
   "description": "Cloudinary Media Library Custom Field for Strapi",
@@ -14,16 +14,31 @@
   "strapi": {
     "kind": "plugin",
     "name": "cloudinary-media-library",
-    "displayName": "Strapi cloudinary media library",
-    "description": "Custom Cloudinary media library integration for Strapi, with enhanced upload and management features."
+    "displayName": "Cloudinary Media Library",
+    "description": "Strapi Custom Field with Cloudinary Media Library feature."
   },
+  "license": "MIT",
   "author": "Pierre Burgy <pierre@strapi.io>",
   "maintainers": [
     {
-      "name": "Mateusz Kleszcz",
-      "email": "mkleszcz@virtuslab.com"
+      "name": "VirtusLab // Mateusz Kleszcz",
+      "email": "mkleszcz@virtuslab.com",
+      "url": "https://virtuslab.com"
+    },
+    {
+      "name": "VirtusLab // Mateusz Ziarko",
+      "email": "mziarko@virtuslab.com",
+      "url": "https://virtuslab.com"
     }
   ],
+  "homepage": "https://github.com/strapi-community/cloudinary-media-library#readme",
+  "bugs": {
+    "url": "https://github.com/strapi-community/cloudinary-media-library/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strapi-community/cloudinary-media-library.git"
+  },
   "exports": {
     "./package.json": "./package.json",
     "./strapi-admin": {
@@ -46,7 +61,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "yarn format && yarn test:unit"
+      "pre-commit": "yarn lint && yarn format && yarn test:unit"
     }
   },
   "scripts": {
@@ -60,13 +75,11 @@
     "format": "prettier --write .",
     "test:ts:front": "run -T tsc -p admin/tsconfig.json",
     "test:ts:back": "run -T tsc -p server/tsconfig.json",
-    "test:unit": "jest --forceExit --detectOpenHandles --config server/jest.config.js",
-    "test:unit:watch": "jest --forceExit --detectOpenHandles --config server/jest.config.js --watch",
-    "test:unit:ci": "CI=true jest --ci --runInBand --verbose --coverage --config server/jest.config.js"
+    "test:server": "jest --forceExit --detectOpenHandles --config server/jest.config.js",
+    "test:server:watch": "jest --forceExit --detectOpenHandles --config server/jest.config.js --watch",
+    "test:server:ci": "CI=true jest --ci --runInBand --verbose --coverage --config server/jest.config.js"
   },
   "dependencies": {
-    "@strapi/design-system": "^2.0.0-rc.23",
-    "@strapi/icons": "^2.0.0-rc.23",
     "@tanstack/react-query": "^5.74.11",
     "react-helmet": "^6.1.0",
     "react-intl": "^7.1.6",
@@ -82,6 +95,9 @@
     "@types/react-dom": "^19.0.4",
     "husky": "7.0.4",
     "jest": "^29.7.0",
+    "jest-cli": "^29.7.0",
+    "jest-junit": "^16.0.0",
+    "jest-styled-components": "^7.1.1",
     "prettier": "^3.5.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -100,7 +116,8 @@
   },
   "engines": {
     "node": ">=18.0.0 <=22.x.x",
-    "npm": ">=6.0.0"
+    "npm": ">=8.0.0",
+    "yarn": ">=1.22.19"
   },
-  "license": "MIT"
+  "packageManager": "yarn@1.22.19"
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="3" failures="0" errors="0" time="1.838">
+  <testsuite name="Settings Controller" errors="0" failures="0" skipped="0" timestamp="2025-05-09T08:37:54" time="1.66" tests="3">
+    <testcase classname="Settings Controller getConfig should return decrypted config from store if exists" name="Settings Controller getConfig should return decrypted config from store if exists" time="0.002">
+    </testcase>
+    <testcase classname="Settings Controller updateConfig should encrypt and save new config" name="Settings Controller updateConfig should encrypt and save new config" time="0.001">
+    </testcase>
+    <testcase classname="Settings Controller restoreConfig should restore default config" name="Settings Controller restoreConfig should restore default config" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>
