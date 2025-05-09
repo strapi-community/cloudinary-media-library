@@ -26,6 +26,8 @@ A Strapi plugin that adds a **custom field** for selecting Cloudinary media asse
 
 ## 📋 Table of Contents
 
+- [✨ Features](#features)
+- [📋 Requirements](#requirements)
 - [📦 Installation](#installation)
 - [🔐 Getting Cloudinary Credentials](#getting-cloudinary-credentials)
 - [⚙️ Setting up Configuration File](#setting-up-configuration-file)
@@ -34,6 +36,18 @@ A Strapi plugin that adds a **custom field** for selecting Cloudinary media asse
 - [🔗 Links](#links)
 - [💬 Community Support](#community-support)
 - [📄 License](#license)
+
+## ✨ Features
+- Seamlessly integrate Cloudinary Media Library into Strapi admin panel
+- Select and manage media assets directly from Cloudinary
+- Custom field for Cloudinary media assets
+- Support for images, videos and other media types
+- **Automatically includes Cloudinary media URLs and metadata in Strapi API responses** (when using the Cloudinary media field)
+
+## 📋 Requirements
+- Strapi v5.0.0 or later
+- Node.js 18+
+- Cloudinary Bucket
 
 ## 📦 Installation
 
