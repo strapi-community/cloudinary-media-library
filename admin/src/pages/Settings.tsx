@@ -96,8 +96,8 @@ const SettingsPage = () => {
             ref={formRef}
             onSubmit={onSubmit}
             initialValues={{
-              cloudName: config.data.cloudName,
-              apiKey: config.data.apiKey,
+              cloudName: config?.data?.cloudName,
+              apiKey: config?.data?.apiKey,
             }}
           >
             {({ values, onChange }) => (
