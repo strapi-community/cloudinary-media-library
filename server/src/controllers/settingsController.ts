@@ -9,7 +9,10 @@ const settingsController = ({ strapi }: { strapi: Core.Strapi }) => ({
     return encryptionKey;
   },
 
-  sanitizeConfig(config: Config) {
+  sanitizeConfig(config: Config | null | undefined) {
+    if (!config) {
+      return {};
+    }
     return {
       cloudName: config.cloudName,
       apiKey: config.apiKey,

@@ -27,7 +27,17 @@ const UploadWidget = ({ onSelect }: UploadWidgetProps) => {
       return;
     }
 
+    if (!config.data) {
+      console.warn('Cloudinary config data is not available');
+      return;
+    }
+
     const { cloudName, apiKey } = config.data;
+
+    if (!cloudName || !apiKey) {
+      console.warn('Cloudinary cloudName or apiKey is missing');
+      return;
+    }
 
     // RENDER AS MODAL (ATTENTION: this works, mediaLibrary's case not)
     myLibrary.current = (window as any).cloudinary.createMediaLibrary(
