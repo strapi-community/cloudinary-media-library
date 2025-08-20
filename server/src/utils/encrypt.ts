@@ -21,18 +21,24 @@ const decrypt = (text: string, key: string): string => {
   return decrypted.toString();
 };
 
-export const encryptConfig = (config: Config, encryptionKey: string) => {
-    const { apiKey } = config;
-    return {
-        ...config,
-        apiKey: apiKey ? encrypt(apiKey, encryptionKey) : apiKey,
-    }
+export const encryptConfig = (config: Config | null | undefined, encryptionKey: string) => {
+  if (!config) {
+    return config;
+  }
+  const { apiKey } = config;
+  return {
+    ...config,
+    apiKey: apiKey ? encrypt(apiKey, encryptionKey) : apiKey,
+  };
 };
 
-export const decryptConfig = (config: Config, encryptionKey: string) => {
-    const { apiKey } = config;
-    return {
-        ...config,
-        apiKey: apiKey ? decrypt(apiKey, encryptionKey) : apiKey,
-    };
+export const decryptConfig = (config: Config | null | undefined, encryptionKey: string) => {
+  if (!config) {
+    return config;
+  }
+  const { apiKey } = config;
+  return {
+    ...config,
+    apiKey: apiKey ? decrypt(apiKey, encryptionKey) : apiKey,
+  };
 };

@@ -2,14 +2,18 @@ import { Core } from '@strapi/strapi';
 import { decryptConfig, encryptConfig } from '../utils';
 import { Config } from '../schemas';
 
-const settingsController = ({ strapi }: { strapi: Core.Strapi }) => ({
+const PLUGIN_URL = 'plugin::cloudinary-media-library';
 
+const settingsController = ({ strapi }: { strapi: Core.Strapi }) => ({
   getEncryptionKey() {
-    const { encryptionKey } = strapi.config.get<Config>('plugin.cloudinary-media-library');
+    const { encryptionKey } = strapi.config.get<Config>(PLUGIN_URL);
     return encryptionKey;
   },
 
-  sanitizeConfig(config: Config) {
+  sanitizeConfig(config: Config | null | undefined) {
+    if (!config) {
+      return {};
+    }
     return {
       cloudName: config.cloudName,
       apiKey: config.apiKey,
@@ -26,7 +30,7 @@ const settingsController = ({ strapi }: { strapi: Core.Strapi }) => ({
       .then((data) => decryptConfig(data, this.getEncryptionKey()));
 
     if (!settings) {
-      const config = strapi.config.get<Config>('plugin.cloudinary-media-library');
+      const config = strapi.config.get<Config>(PLUGIN_URL);
       return ctx.send(this.sanitizeConfig(config) || {});
     }
 
@@ -48,7 +52,7 @@ const settingsController = ({ strapi }: { strapi: Core.Strapi }) => ({
   },
 
   async restoreConfig(ctx) {
-    const defaultConfig = strapi.config.get('plugin.cloudinary-media-library');
+    const defaultConfig = strapi.config.get(PLUGIN_URL);
 
     const updated = await strapi
       .store({

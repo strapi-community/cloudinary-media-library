@@ -68,8 +68,12 @@ const SettingsPage = () => {
   }
 
   if (config.status !== 'success') {
-    // TODO
-    return formatMessage({ id: getTranslation('page.settings.error') });
+    // TODO better error handling
+    return (
+      <Typography variant="delta" as="h2">
+        {formatMessage({ id: getTranslation('page.settings.error') })}
+      </Typography>
+    );
   }
 
   return (

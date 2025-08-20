@@ -1,7 +1,7 @@
 {
   "cloudinary-media-library.plugin.section.name": "Cloudinary plugin",
   "cloudinary-media-library.plugin.section.configuration": "Configuration",
-  "cloudinary-media-library.page.settings.error": "Error!",
+  "cloudinary-media-library.page.settings.error": "Error! Make sure you provided 32-characters encryptionKey property in config file.",
   "cloudinary-media-library.page.settings.header.title": "Cloudinary Media Library",
   "cloudinary-media-library.page.settings.header.description": "Manage your Cloudinary Media Library settings",
   "cloudinary-media-library.page.settings.actions.submit": "Submit",

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
 import { Button } from '@strapi/design-system';
 
-import useScript from 'react-script-hook';
+import { default as RSH } from 'react-script-hook';
 import { getTranslation } from '../utils/getTranslation';
 import type { CloudinaryUploadData } from '../types';
 import { useSettingsAPI } from '../hooks/useSettingsApi';
@@ -14,6 +14,8 @@ type UploadWidgetProps = {
 const UploadWidget = ({ onSelect }: UploadWidgetProps) => {
   const { formatMessage } = useIntl();
   const myLibrary = useRef<any>(null);
+
+  const useScript = (RSH as any).default || RSH;
 
   const [loading] = useScript({
     src: 'https://media-library.cloudinary.com/global/all.js',
@@ -27,24 +29,37 @@ const UploadWidget = ({ onSelect }: UploadWidgetProps) => {
       return;
     }
 
+    if (!config.data) {
+      console.warn('Cloudinary config data is not available');
+      return;
+    }
+
     const { cloudName, apiKey } = config.data;
 
-    // RENDER AS MODAL (ATTENTION: this works, mediaLibrary's case not)
-    myLibrary.current = (window as any).cloudinary.createMediaLibrary(
-      {
-        cloud_name: cloudName,
-        api_key: apiKey,
-        insert_caption: formatMessage({ id: getTranslation('select.label') }),
-        remove_header: false,
-      },
-      {
-        insertHandler: (data: CloudinaryUploadData) => {
-          console.log('Asset selected:', data);
-          onSelect(data);
-        },
-      }
-    );
+    if (!cloudName || !apiKey) {
+      console.warn('Cloudinary cloudName or apiKey is missing');
+      return;
+    }
 
+    // RENDER AS MODAL (ATTENTION: this works, mediaLibrary's case not)
+    try {
+      myLibrary.current = (window as any).cloudinary.createMediaLibrary(
+        {
+          cloud_name: cloudName,
+          api_key: apiKey,
+          insert_caption: formatMessage({ id: getTranslation('select.label') }),
+          remove_header: false,
+        },
+        {
+          insertHandler: (data: CloudinaryUploadData) => {
+            console.log('Asset selected:', data);
+            onSelect(data);
+          },
+        }
+      );
+    } catch (err) {
+      console.warn('Error while loading Cloudinary Media Library', err);
+    }
     myLibrary.current.on('close', () => {
       console.log('MODAL modalView closed');
     });
@@ -55,7 +70,9 @@ const UploadWidget = ({ onSelect }: UploadWidgetProps) => {
   };
 
   return (
-    <Button onClick={onOpenAgain}>{formatMessage({ id: getTranslation('upload.label') })}</Button>
+    <Button loading={loading} disabled={!!config.error} onClick={onOpenAgain}>
+      {formatMessage({ id: getTranslation('upload.label') })}
+    </Button>
   );
 };
 

@@ -1,4 +1,3 @@
-import { Core } from '@strapi/strapi';
 import settingsController from '../settingsController';
 import { decryptConfig, encryptConfig } from '../../utils';
 
@@ -80,7 +79,11 @@ describe('Settings Controller', () => {
 
   describe('restoreConfig', () => {
     it('should restore default config', async () => {
-      const defaultConfig = { cloudName: 'default-cloud', apiKey: 'default-key', encryptionKey: 'test-encryption-key' };
+      const defaultConfig = {
+        cloudName: 'default-cloud',
+        apiKey: 'default-key',
+        encryptionKey: 'test-encryption-key',
+      };
       const encryptedConfig = { encrypted: true };
 
       strapi.config.get.mockReturnValue(defaultConfig);
@@ -89,7 +92,7 @@ describe('Settings Controller', () => {
 
       await controller.restoreConfig(ctx);
 
-      expect(strapi.config.get).toHaveBeenCalledWith('plugin.cloudinary-media-library');
+      expect(strapi.config.get).toHaveBeenCalledWith('plugin::cloudinary-media-library');
       expect(encryptConfig).toHaveBeenCalledWith(defaultConfig, expect.any(String));
       expect(strapi.store().set).toHaveBeenCalledWith({
         key: 'cloudinary-config',
