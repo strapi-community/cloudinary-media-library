@@ -1,4 +1,3 @@
-import { Core } from '@strapi/strapi';
 import settingsController from '../settingsController';
 import { decryptConfig, encryptConfig } from '../../utils';
 
@@ -80,7 +79,11 @@ describe('Settings Controller', () => {
 
   describe('restoreConfig', () => {
     it('should restore default config', async () => {
-      const defaultConfig = { cloudName: 'default-cloud', apiKey: 'default-key', encryptionKey: 'test-encryption-key' };
+      const defaultConfig = {
+        cloudName: 'default-cloud',
+        apiKey: 'default-key',
+        encryptionKey: 'test-encryption-key',
+      };
       const encryptedConfig = { encrypted: true };
 
       strapi.config.get.mockReturnValue(defaultConfig);

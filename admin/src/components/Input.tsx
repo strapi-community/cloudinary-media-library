@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { Field } from '@strapi/design-system';
@@ -9,12 +9,15 @@ import { getTranslation } from '../utils/getTranslation';
 import type { CloudinaryUploadData } from '../types';
 import { IconButton } from '@strapi/design-system';
 import { Trash } from '@strapi/icons';
-import { Box } from '@strapi/design-system';
+import { Box, Image } from '@strapi/design-system';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 type InputProps = {
   name: string;
 };
+
+const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+const videoExtensions = ['mp4', 'webm', 'ogg', 'mov'];
 
 const queryProvider = new QueryClient();
 
@@ -22,7 +25,8 @@ const Input = forwardRef(({ name }: InputProps) => {
   const { formatMessage } = useIntl();
 
   const field = useField(name);
-  const [imageUrl, setImage] = useState(field.value || '');
+  const [imageUrl, setImage] = useState<string>(field.value || '');
+  const ext = useMemo(() => imageUrl.split('.').pop()?.toLowerCase() || '', [imageUrl]);
 
   const handleSelect = (data: CloudinaryUploadData) => {
     const newImageUrl = data.assets[0]?.secure_url;
@@ -43,11 +47,16 @@ const Input = forwardRef(({ name }: InputProps) => {
             <IconButton onClick={() => updateImage('')} position="absolute" right="1em" top="1em">
               <Trash />
             </IconButton>
-            <img
-              src={imageUrl}
-              alt={formatMessage({ id: getTranslation('uploaded.label') })}
-              style={{ borderRadius: '4px' }}
-            />
+            {imageExtensions.includes(ext) && (
+              <Image
+                src={imageUrl}
+                alt={formatMessage({ id: getTranslation('uploaded.label') })}
+                style={{ borderRadius: '4px' }}
+              />
+            )}
+            {videoExtensions.includes(ext) && (
+              <video src={imageUrl} controls style={{ borderRadius: '4px' }} />
+            )}
           </Box>
         )}
         <UploadWidget onSelect={handleSelect} />

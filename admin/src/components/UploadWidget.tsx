@@ -15,12 +15,12 @@ const UploadWidget = ({ onSelect }: UploadWidgetProps) => {
   const { formatMessage } = useIntl();
   const myLibrary = useRef<any>(null);
 
-  const useScript = (RSH as any).default;
+  const useScript = (RSH as any).default || RSH;
 
   const [loading] = useScript({
     src: 'https://media-library.cloudinary.com/global/all.js',
     checkForExisting: true,
-  })
+  });
 
   const { config } = useSettingsAPI();
 
@@ -58,7 +58,7 @@ const UploadWidget = ({ onSelect }: UploadWidgetProps) => {
         }
       );
     } catch (err) {
-      console.warn('Error while loading Cloudinary Media Library', err)
+      console.warn('Error while loading Cloudinary Media Library', err);
     }
     myLibrary.current.on('close', () => {
       console.log('MODAL modalView closed');
@@ -70,11 +70,7 @@ const UploadWidget = ({ onSelect }: UploadWidgetProps) => {
   };
 
   return (
-    <Button 
-      loading={loading} 
-      disabled={!!config.error} 
-      onClick={onOpenAgain}
-    >
+    <Button loading={loading} disabled={!!config.error} onClick={onOpenAgain}>
       {formatMessage({ id: getTranslation('upload.label') })}
     </Button>
   );

@@ -22,23 +22,23 @@ const decrypt = (text: string, key: string): string => {
 };
 
 export const encryptConfig = (config: Config | null | undefined, encryptionKey: string) => {
-    if (!config) {
-        return config;
-    }
-    const { apiKey } = config;
-    return {
-        ...config,
-        apiKey: apiKey ? encrypt(apiKey, encryptionKey) : apiKey,
-    }
+  if (!config) {
+    return config;
+  }
+  const { apiKey } = config;
+  return {
+    ...config,
+    apiKey: apiKey ? encrypt(apiKey, encryptionKey) : apiKey,
+  };
 };
 
 export const decryptConfig = (config: Config | null | undefined, encryptionKey: string) => {
-    if (!config) {
-        return config;
-    }
-    const { apiKey } = config;
-    return {
-        ...config,
-        apiKey: apiKey ? decrypt(apiKey, encryptionKey) : apiKey,
-    };
+  if (!config) {
+    return config;
+  }
+  const { apiKey } = config;
+  return {
+    ...config,
+    apiKey: apiKey ? decrypt(apiKey, encryptionKey) : apiKey,
+  };
 };

@@ -5,7 +5,6 @@ import { Config } from '../schemas';
 const PLUGIN_URL = 'plugin::cloudinary-media-library';
 
 const settingsController = ({ strapi }: { strapi: Core.Strapi }) => ({
-
   getEncryptionKey() {
     const { encryptionKey } = strapi.config.get<Config>(PLUGIN_URL);
     return encryptionKey;

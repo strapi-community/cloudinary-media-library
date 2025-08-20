@@ -21,7 +21,6 @@
   <img style="width: 100%; height: auto;" src="https://www.sensinum.com/img/open-source/strapi-plugin-cloudinary-media-library/preview.png" alt="UI preview" />
 </div>
 
-
 A Strapi plugin that adds a **custom field** for selecting Cloudinary media assets using Cloudinary's official Media Library widget.
 
 ## 📋 Table of Contents
@@ -38,6 +37,7 @@ A Strapi plugin that adds a **custom field** for selecting Cloudinary media asse
 - [📄 License](#license)
 
 ## ✨ Features
+
 - Seamlessly integrate Cloudinary Media Library into Strapi admin panel
 - Select and manage media assets directly from Cloudinary
 - Custom field for Cloudinary media assets
@@ -45,6 +45,7 @@ A Strapi plugin that adds a **custom field** for selecting Cloudinary media asse
 - **Automatically includes Cloudinary media URLs and metadata in Strapi API responses** (when using the Cloudinary media field)
 
 ## 📋 Requirements
+
 - Strapi v5.0.0 or later
 - Node.js 18+
 - Cloudinary Bucket
@@ -78,7 +79,7 @@ export default {
     config: {
       cloudName: 'your-cloud-name',
       apiKey: 'your-api-key',
-      encryptionKey: '32 chars encryption key'
+      encryptionKey: '32 chars encryption key',
     },
   },
 };
@@ -126,7 +127,13 @@ export default [
             'https://upload-widget.cloudinary.com',
             'https://console.cloudinary.com',
           ],
-          'media-src': ["'self'", 'data:', 'blob:', 'https://console.cloudinary.com'],
+          'media-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'https://console.cloudinary.com',
+            'https://res.cloudinary.com',
+          ],
           'frame-src': [
             "'self'",
             'https://media-library.cloudinary.com',
@@ -184,8 +191,8 @@ The **Cloudinary Media Library** plugin supports two types of role-based permiss
 ## 💬 Community support
 
 - [GitHub](https://github.com/strapi-community/cloudinary-media-library) (Bug reports, contributions)
-  
-You can also used official support platform of Strapi, and search `[VirtusLab]` prefixed people (maintainers) 
+
+You can also used official support platform of Strapi, and search `[VirtusLab]` prefixed people (maintainers)
 
 - [Discord](https://discord.strapi.io) (For live discussion with the Community and Strapi team)
 - [Community Forum](https://forum.strapi.io) (Questions and Discussions)
