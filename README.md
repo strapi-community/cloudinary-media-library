@@ -84,11 +84,13 @@ export default {
 };
 ```
 
-Additionaly you can set up plugin config through Settings page in the Admin panel. Please note that this configuration will overwrite `config/plugin.ts`
+Additionaly you can set up `cloudName` and `apiKey` properties through Settings page in the Admin panel. Please note that this configuration will overwrite `config/plugin.ts`
 
 ![Plugin Configuration](https://www.sensinum.com/img/open-source/strapi-plugin-cloudinary-media-library/cfg-plugin/1.png)
 
 These options are passed directly to the Cloudinary Media Library widget.
+
+**IMPORTANT** You must set the `encryptionKey` property in the config file. This key is required for Strapi to encrypt credentials in the database. If you don’t provide `encryptionKey` as a 32-character string, the media library will not work.
 
 ### Setting up `strapi::security` middlewares to avoid CSP blocking Cloudinary
 
