@@ -89,7 +89,7 @@ describe('Settings Controller', () => {
 
       await controller.restoreConfig(ctx);
 
-      expect(strapi.config.get).toHaveBeenCalledWith('plugin.cloudinary-media-library');
+      expect(strapi.config.get).toHaveBeenCalledWith('plugin::cloudinary-media-library');
       expect(encryptConfig).toHaveBeenCalledWith(defaultConfig, expect.any(String));
       expect(strapi.store().set).toHaveBeenCalledWith({
         key: 'cloudinary-config',
