@@ -9,7 +9,7 @@ import { getTranslation } from '../utils/getTranslation';
 import type { CloudinaryUploadData } from '../types';
 import { IconButton } from '@strapi/design-system';
 import { Trash } from '@strapi/icons';
-import { Box, Image } from '@strapi/design-system';
+import { Box } from '@strapi/design-system';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 type InputProps = {
@@ -48,7 +48,7 @@ const Input = forwardRef(({ name }: InputProps) => {
               <Trash />
             </IconButton>
             {imageExtensions.includes(ext) && (
-              <Image
+              <img
                 src={imageUrl}
                 alt={formatMessage({ id: getTranslation('uploaded.label') })}
                 style={{ borderRadius: '4px' }}
