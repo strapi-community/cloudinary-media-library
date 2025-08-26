@@ -47,7 +47,7 @@ const settingsController = ({ strapi }: { strapi: Core.Strapi }) => ({
         key: 'cloudinary-config',
         value: encryptConfig(ctx.request.body, this.getEncryptionKey()),
       });
-    console.log(this.getEncryptionKey());
+
     ctx.send(updated);
   },
 
@@ -63,7 +63,7 @@ const settingsController = ({ strapi }: { strapi: Core.Strapi }) => ({
         key: 'cloudinary-config',
         value: encryptConfig(defaultConfig, this.getEncryptionKey()),
       });
-    console.log(this.getEncryptionKey());
+
     ctx.send(updated);
   },
 });
