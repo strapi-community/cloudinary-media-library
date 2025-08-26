@@ -40,10 +40,32 @@ const SettingsPage = () => {
         type: 'success',
       });
     },
+    restoreSettingsMutationError: () => {
+      toggleNotification({
+        message: formatMessage({
+          id: getTranslation('page.settings.action.restore.error'),
+        }),
+        type: 'danger',
+      });
+    },
     updateSettingsMutationSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: api.config.getKey(),
         exact: false,
+      });
+      toggleNotification({
+        message: formatMessage({
+          id: getTranslation('page.settings.action.update.confirmation.success'),
+        }),
+        type: 'success',
+      });
+    },
+    updateSettingsMutationError: () => {
+      toggleNotification({
+        message: formatMessage({
+          id: getTranslation('page.settings.action.update.error'),
+        }),
+        type: 'danger',
       });
     },
   });

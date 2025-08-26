@@ -1,6 +1,6 @@
 {
   "name": "@strapi-community/cloudinary-media-library",
-  "version": "v1.0.2",
+  "version": "1.0.3",
   "type": "commonjs",
   "description": "Cloudinary Media Library Custom Field for Strapi",
   "keywords": [
@@ -81,9 +81,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.74.11",
-    "react-helmet": "^6.1.0",
     "react-intl": "^7.1.6",
-    "react-script-hook": "^1.7.2",
     "zod": "^3.24.3"
   },
   "devDependencies": {

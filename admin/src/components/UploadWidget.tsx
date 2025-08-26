@@ -2,10 +2,11 @@ import { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
 import { Button } from '@strapi/design-system';
 
-import { default as RSH } from 'react-script-hook';
 import { getTranslation } from '../utils/getTranslation';
 import type { CloudinaryUploadData } from '../types';
 import { useSettingsAPI } from '../hooks/useSettingsApi';
+import { useScript } from '../hooks/useScript';
+import { useNotification } from '@strapi/strapi/admin';
 
 type UploadWidgetProps = {
   onSelect: (result: CloudinaryUploadData) => void;
@@ -15,17 +16,14 @@ const UploadWidget = ({ onSelect }: UploadWidgetProps) => {
   const { formatMessage } = useIntl();
   const myLibrary = useRef<any>(null);
 
-  const useScript = (RSH as any).default || RSH;
-
-  const [loading] = useScript({
-    src: 'https://media-library.cloudinary.com/global/all.js',
-    checkForExisting: true,
-  });
+  const cloudinaryScriptStatus = useScript('https://media-library.cloudinary.com/global/all.js');
 
   const { config } = useSettingsAPI();
 
+  const { toggleNotification } = useNotification();
+
   useEffect(() => {
-    if (loading || myLibrary.current || config.status !== 'success') {
+    if (myLibrary.current || (config.status !== 'success' && cloudinaryScriptStatus !== 'ready')) {
       return;
     }
 
@@ -63,14 +61,37 @@ const UploadWidget = ({ onSelect }: UploadWidgetProps) => {
     myLibrary.current.on('close', () => {
       console.log('MODAL modalView closed');
     });
-  }, [config, loading, myLibrary]);
+  }, [config, cloudinaryScriptStatus, myLibrary]);
 
   const onOpenAgain = () => {
-    myLibrary.current.show();
+    try {
+      myLibrary.current.show();
+    } catch (err) {
+      if (!config.data?.cloudName || !config.data?.apiKey) {
+        toggleNotification({
+          message: formatMessage({
+            id: getTranslation('config.error'),
+          }),
+          type: 'danger',
+        });
+      } else {
+        toggleNotification({
+          message:
+            formatMessage({
+              id: getTranslation('modal.error'),
+            }) + err,
+          type: 'danger',
+        });
+      }
+    }
   };
 
   return (
-    <Button loading={loading} disabled={!!config.error} onClick={onOpenAgain}>
+    <Button
+      loading={cloudinaryScriptStatus === 'loading'}
+      disabled={cloudinaryScriptStatus === 'error' && !!config.error}
+      onClick={onOpenAgain}
+    >
       {formatMessage({ id: getTranslation('upload.label') })}
     </Button>
   );
