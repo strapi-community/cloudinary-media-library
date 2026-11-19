@@ -23,7 +23,9 @@ const UploadWidget = ({ onSelect }: UploadWidgetProps) => {
   const { toggleNotification } = useNotification();
 
   useEffect(() => {
-    if (myLibrary.current || (config.status !== 'success' && cloudinaryScriptStatus !== 'ready')) {
+    // Wait for both the settings and the Cloudinary script: createMediaLibrary
+    // is only defined once https://media-library.cloudinary.com/global/all.js has loaded.
+    if (myLibrary.current || config.status !== 'success' || cloudinaryScriptStatus !== 'ready') {
       return;
     }
 
@@ -55,12 +57,13 @@ const UploadWidget = ({ onSelect }: UploadWidgetProps) => {
           },
         }
       );
+      myLibrary.current?.on('close', () => {
+        console.log('MODAL modalView closed');
+      });
     } catch (err) {
+      myLibrary.current = null;
       console.warn('Error while loading Cloudinary Media Library', err);
     }
-    myLibrary.current.on('close', () => {
-      console.log('MODAL modalView closed');
-    });
   }, [config, cloudinaryScriptStatus, myLibrary]);
 
   const onOpenAgain = () => {
